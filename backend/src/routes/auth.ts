@@ -3,6 +3,7 @@ import UserModel from "../models/userModels"
 import { body, validationResult } from "express-validator";
 import bcryptjs from "bcryptjs"
 import jwt from "jsonwebtoken"
+import { auth, AuthRequest } from "../middleware/auth";
 
 
 const authRouter = Router();
@@ -186,8 +187,21 @@ authRouter.post("/tokenIsValid", async (req, res) => {
 
 })
 
-authRouter.get("/", (req, res) => {
-    res.send('Auth Route')
+authRouter.get("/", auth, async (req: AuthRequest, res) => {
+    try {
+        if (!req.user) {
+            res.status(401).json({ msg: "User not found" });
+            return;
+        }
+
+        const user = await UserModel.findOne({
+            _id: req.user
+        })
+
+        res.json({ ...user, token: req.token })
+    } catch (e) {
+        res.status(500).json(false);
+    }
 });
 
 export default authRouter;  // export the router
