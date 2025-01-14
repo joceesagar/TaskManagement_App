@@ -54,12 +54,10 @@ class UserModels {
       token: map['token'] ?? '',
       createdAt: map['createdAt'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['createdAt'] as int)
-          : DateTime
-              .now(), // Default to the current time if 'createdAt' is null
+          : DateTime.now(), // Use current time if 'createdAt' is null
       updatedAt: map['updatedAt'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['updatedAt'] as int)
-          : DateTime
-              .now(), // Default to the current time if 'updatedAt' is null
+          : DateTime.now(), // Use current time if 'updatedAt' is null
     );
   }
 

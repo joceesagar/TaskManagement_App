@@ -12,7 +12,7 @@ export const auth = async (req: AuthRequest, res: Response, next: NextFunction) 
         //get the header
         const token = req.header("x-auth-token");
         if (!token) {
-            res.status(401).json({ msg: "No auth token, access denied!" });
+            res.status(401).json({ message: "No auth token, access denied!" });
             return;
         }
 
@@ -25,7 +25,7 @@ export const auth = async (req: AuthRequest, res: Response, next: NextFunction) 
         }
         const verified = jwt.verify(token, SECRET_KEY)
         if (!verified) {
-            res.status(401).json({ msg: "Token Validation Failed" });
+            res.status(401).json({ message: "Token Validation Failed" });
             return;
         }
 
@@ -36,7 +36,7 @@ export const auth = async (req: AuthRequest, res: Response, next: NextFunction) 
             _id: verifiedToken.id
         });
         if (!user) {
-            res.status(401).json({ msg: "User not found" });
+            res.status(401).json({ message: "User not found" });
             return;
         }
 

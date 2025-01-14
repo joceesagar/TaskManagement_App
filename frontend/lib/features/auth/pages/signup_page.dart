@@ -42,11 +42,19 @@ class _SignupPageState extends State<SignupPage> {
         body: BlocConsumer<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthError) {
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(state.message)));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.message),
+              backgroundColor: Colors.red,
+            ),
+          );
         } else if (state is AuthSignUp) {
           ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Account Created! Log in Now")));
+            const SnackBar(
+              content: Text("Account Created! Log in Now"),
+              backgroundColor: Colors.green,
+            ),
+          );
         }
       },
       builder: (context, state) {
