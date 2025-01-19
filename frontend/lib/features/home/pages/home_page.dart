@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,9 +9,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Hey Whatsupp!!"),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("My Task"),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(CupertinoIcons.add),
+          ),
+        ],
+      ),
+      body: const Column(
+        children: [
+          //date selecter
+        ],
       ),
     );
   }
